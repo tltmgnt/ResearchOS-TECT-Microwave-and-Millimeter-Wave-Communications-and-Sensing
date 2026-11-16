@@ -1,0 +1,17 @@
+[build-system]
+requires = ["setuptools>=68"]
+build-backend = "setuptools.build_meta"
+
+[project]
+name = "researchos-tect-rf"
+version = "0.1.0"
+description = "Reproducible microwave and millimeter-wave research calculations"
+requires-python = ">=3.10"
+license = {text = "Apache-2.0"}
+dependencies = []
+
+[project.scripts]
+researchos-rf = "researchos_rf.cli:main"
+
+[tool.setuptools.packages.find]
+include = ["researchos_rf*"]

@@ -1,0 +1,19 @@
+{
+  "schema_version": 1,
+  "id": "synthetic-rf-001",
+  "title": "Idealized microwave and millimeter-wave link comparison",
+  "owner": "example-only",
+  "hypothesis": "At fixed declared antenna gains, free-space loss rises with frequency and distance; ideal bandwidth-based range resolution scales inversely with bandwidth.",
+  "protocol_reference": "docs/MODEL.md; illustrative arithmetic study only",
+  "differentiation": "No novel RF method is established. These established baseline equations support reproducibility; literature/program overlap review and laboratory validation remain required.",
+  "data_kind": "synthetic",
+  "link": {"tx_power_dbm": 10, "tx_gain_dbi": 10, "rx_gain_dbi": 10, "system_loss_db": 2, "noise_figure_db": 6, "bandwidth_mhz": 100, "temperature_K": 290, "aperture_m": 0.05, "required_snr_db": 10, "distances_m": [10, 50, 100, 500], "assumption_reference": "Unobstructed far-field, fixed gain, matched polarization, no interference; extra attenuation is a declared placeholder, not a weather model"},
+  "bands": [
+    {"id": "microwave-6", "label": "6 GHz illustrative band", "frequency_ghz": 6, "extra_attenuation_db_km": 0},
+    {"id": "mmwave-28", "label": "28 GHz illustrative band", "frequency_ghz": 28, "extra_attenuation_db_km": 0},
+    {"id": "mmwave-60", "label": "60 GHz illustrative band", "frequency_ghz": 60, "extra_attenuation_db_km": 0}
+  ],
+  "sensing": {"bandwidths_mhz": [20, 100, 500], "assumed_round_trip_delay_ns": 20, "sample_rate_mhz": 1000, "assumption_reference": "Ideal monostatic delay and bandwidth arithmetic in vacuum; no waveform, target or detector"},
+  "measurements": [],
+  "evidence": []
+}
