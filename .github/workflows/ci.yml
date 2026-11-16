@@ -1,0 +1,31 @@
+name: Verify RF research workspace
+on: [push, pull_request, workflow_dispatch]
+permissions:
+  contents: read
+jobs:
+  verify:
+    runs-on: ubuntu-latest
+    strategy:
+      matrix:
+        python: ['3.10', '3.11', '3.12', '3.13']
+    steps:
+      - uses: actions/checkout@v4
+      - uses: actions/setup-python@v5
+        with:
+          python-version: ${{ matrix.python }}
+      - uses: actions/setup-node@v4
+        with:
+          node-version: 22
+      - run: node --check web/app.mjs
+      - run: node --check web/worker.mjs
+      - run: node web/tests/model.test.mjs
+      - run: python -m pip install .
+      - run: python -m unittest discover -s tests -v
+      - run: researchos-rf validate examples/synthetic-rf.json
+      - run: researchos-rf run examples/synthetic-rf.json --output runs/demo
+      - run: researchos-rf verify runs/demo
+      - run: researchos-rf report runs/demo
+      - uses: actions/upload-artifact@v4
+        with:
+          name: synthetic-rf-python-${{ matrix.python }}
+          path: runs/demo/
